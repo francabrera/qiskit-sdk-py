@@ -3,9 +3,49 @@
 # Author: Juan Gomez
 
 # Please provide a valid username and password to connect to PyPi for uploading
-# the distributable packaged SDK
+# the QISKit SDK distributable packaged
 USERNAME=""
 PASSWORD=""
+
+
+
+usage(){
+    echo "Usage:"
+    echo "$0 [OPTION]"
+    echo "Helper script to create and upload QISKit SDK distributable package"
+    echo "to PyPi severs."
+    echo ""
+    echo "Options:"
+    echo "-u <username>   Specify a registered PyPi username"
+    echo "-p <password>   The password of the username"
+    echo "-h              Shows this help"
+    echo ""
+    exit 1
+}
+
+while getopts "u:p:h" optname
+  do
+    case "$optname" in
+      "h")
+        usage
+        ;;
+      "u")
+        USERNAME=$OPTARG
+        ;;
+      "p")
+        PASSWORD=$OPTARG
+        ;;
+      ":")
+        echo "No argument value for option $OPTARG"
+        usage
+        ;;
+      *)
+      # Should not occur
+        echo "Unknown error while processing options"
+        usage
+        ;;
+    esac
+  done
 
 self=$0
 date > $self.log
@@ -101,7 +141,7 @@ then
     echo "--------------------------"
     echo "Something wrong has happened!!. Please make sure that you are in the "
     echo "project root directory and there's a setup.py file in there."
-    exit 1
+    exit 2
 fi
 echo -e "[OK]"
 
@@ -121,13 +161,13 @@ then
         then
             echo "Couldn't install Twine, please try to install twine by yourself:"
             echo "$ pip install twine"
-            exit 2
+            exit 3
         else
             echo "Twine successfully installed!"
         fi
     else
         echo "Install Twine by yourself and try again later!"
-        exit 3
+        exit 4
     fi
 fi
 echo -e "[OK]"
@@ -140,9 +180,10 @@ then
     echo "--------------------------"
     echo "Error! Couldn't upload the distributed package to PyPi!!"
     diagnose
-    exit 4
+    exit 5
 fi
 
 echo -e "[OK]"
 echo "Done!"
+rm -f $self.log
 exit 0
