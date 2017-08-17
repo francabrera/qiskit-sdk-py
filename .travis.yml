@@ -25,3 +25,9 @@ install:
   - pip install -r requires-dev.txt
 
 script: make test
+
+branches:
+    only:
+        master
+        skip-tests-travis
+        dev
