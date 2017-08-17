@@ -231,7 +231,6 @@ Other QISKit projects
 - `Python API <https://github.com/QISKit/qiskit-api-py>`__ API Client to use IBM Q experience in Python.
 - `Tutorials <https://github.com/QISKit/qiskit-tutorial>`__ Jupyter notebooks for using QISKit.
 
-
 License
 -------
 
