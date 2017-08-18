@@ -28,6 +28,6 @@ script: make test
 
 branches:
     only:
-       - master
-       - skip-tests-travis
-       - dev
+      - master
+      - skip-tests-travis
+      - dev
