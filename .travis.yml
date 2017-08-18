@@ -27,7 +27,7 @@ install:
 script: make test
 
 branches:
-    only:
-    - master
-    - skip-tests-travis
-    - dev
+  only:
+  - master
+  - skip-tests-travis
+  - dev
